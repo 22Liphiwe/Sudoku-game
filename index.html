@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sudoku Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 20px;
+    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+    }
+    td {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #999;
+      text-align: center;
+    }
+    input {
+      width: 38px;
+      height: 38px;
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sudoku Game</h1>
+  <table>
+    <tbody>
+      <!-- 9x9 Sudoku Grid -->
+      <script>
+        for (let i = 0; i < 9; i++) {
+          document.write("<tr>");
+          for (let j = 0; j < 9; j++) {
+            document.write('<td><input maxlength="1"></td>');
+          }
+          document.write("</tr>");
+        }
+      </script>
+    </tbody>
+  </table>
+</body>
+</html>
