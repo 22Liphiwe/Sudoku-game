@@ -8,39 +8,92 @@
       text-align: center;
       margin-top: 20px;
     }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
     table {
       margin: auto;
       border-collapse: collapse;
     }
+
     td {
       width: 40px;
       height: 40px;
       border: 1px solid #999;
-      text-align: center;
+      padding: 0;
     }
+
     input {
-      width: 38px;
-      height: 38px;
+      width: 100%;
+      height: 100%;
       text-align: center;
       font-size: 18px;
+      border: none;
+    }
+
+    /* Bold borders every 3 rows/columns */
+    tr:nth-child(3n) td {
+      border-bottom: 2px solid #000;
+    }
+
+    td:nth-child(3n) {
+      border-right: 2px solid #000;
+    }
+
+    td:nth-child(1) {
+      border-left: 2px solid #000;
+    }
+
+    tr:nth-child(1) td {
+      border-top: 2px solid #000;
+    }
+
+    input:disabled {
+      background-color: #eee;
+      font-weight: bold;
+      color: black;
     }
   </style>
 </head>
 <body>
   <h1>Sudoku Game</h1>
-  <table>
-    <tbody>
-      <!-- 9x9 Sudoku Grid -->
-      <script>
-        for (let i = 0; i < 9; i++) {
-          document.write("<tr>");
-          for (let j = 0; j < 9; j++) {
-            document.write('<td><input maxlength="1"></td>');
-          }
-          document.write("</tr>");
+  <table id="sudoku-board"></table>
+
+  <script>
+    const board = [
+      [5, 3, '', '', 7, '', '', '', ''],
+      [6, '', '', 1, 9, 5, '', '', ''],
+      ['', 9, 8, '', '', '', '', 6, ''],
+      [8, '', '', '', 6, '', '', '', 3],
+      [4, '', '', 8, '', 3, '', '', 1],
+      [7, '', '', '', 2, '', '', '', 6],
+      ['', 6, '', '', '', '', 2, 8, ''],
+      ['', '', '', 4, 1, 9, '', '', 5],
+      ['', '', '', '', 8, '', '', 7, 9]
+    ];
+
+    const table = document.getElementById('sudoku-board');
+
+    for (let i = 0; i < 9; i++) {
+      const row = document.createElement('tr');
+      for (let j = 0; j < 9; j++) {
+        const cell = document.createElement('td');
+        const input = document.createElement('input');
+        input.setAttribute('maxlength', 1);
+
+        const value = board[i][j];
+        if (value !== '') {
+          input.value = value;
+          input.disabled = true;
         }
-      </script>
-    </tbody>
-  </table>
+
+        cell.appendChild(input);
+        row.appendChild(cell);
+      }
+      table.appendChild(row);
+    }
+  </script>
 </body>
 </html>
